@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.10.1"/>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.5.1" />
     <PackageReference Include="DarkFactor.Common.Lib" Version="1.1.34"/>
   </ItemGroup>
 
