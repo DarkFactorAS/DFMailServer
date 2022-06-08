@@ -8,7 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using DFCommonLib.Config;
+
 using MailServer.Provider;
+using MailServer.Model;
 
 namespace MailServer
 {
@@ -24,6 +27,7 @@ namespace MailServer
 
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddTransient<IConfigurationHelper, ConfigurationHelper<EmailConfiguration> >();
                     services.AddTransient<IEmailProvider, EmailProvider>();
                 })
 

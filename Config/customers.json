@@ -2,11 +2,12 @@
     "CustomerSettings": {
       "Customers": [
         {
-            "Id": "MailServer",
+            "Id": "MailServerProd",
             "SmtpServer": "smtp_server",
             "SmtpPort": 465,
             "SmtpUsername": "smtp_username",
             "SmtpPassword": "smtp_password",
+        
             "PopServer": "pop_server",
             "PopPort": 995,
             "PopUsername": "pop_username", 

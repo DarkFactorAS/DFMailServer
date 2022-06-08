@@ -10,6 +10,8 @@ using MimeKit.Text;
 using Microsoft.Extensions.Options;
 using MailServer.Model;
 
+using DFCommonLib.Config;
+
 // https://dotnetcoretutorials.com/2017/01/11/sending-receiving-email-net-core/
 
 namespace MailServer.Provider
@@ -24,9 +26,9 @@ namespace MailServer.Provider
     {
         private readonly EmailConfiguration _emailConfiguration;
 
-        public EmailProvider(IOptions<EmailConfiguration> emailConfiguration)
+        public EmailProvider(IConfigurationHelper configuration)
         {
-            _emailConfiguration = emailConfiguration.Value;
+            _emailConfiguration = configuration.GetFirstCustomer() as EmailConfiguration;
         }
 
         public List<EmailMessage> ReceiveEmail(int maxCount = 10)
