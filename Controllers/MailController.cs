@@ -17,10 +17,11 @@ namespace MailServer.Controllers
         IEmailProvider _emailProvider;
 
         public MailController(
-            IEmailProvider emailProvider, 
-            IConfigurationHelper configuration)
+            IEmailProvider emailProvider 
+            //,IConfigurationHelper configuration
+            )
         {
-            _emailProvider = emailProvider;
+                _emailProvider = emailProvider;
 
             // var customer = configuration.GetFirstCustomer() as BotCustomer;
             // if ( customer != null )
@@ -34,6 +35,12 @@ namespace MailServer.Controllers
         public void SendEmail(EmailMessage emailMessage)
         {
             _emailProvider.Send(emailMessage);
+        }
+
+        [HttpGet]
+        [Route("Ping")]
+        public void Ping(string message)
+        {
         }
     }
 }
