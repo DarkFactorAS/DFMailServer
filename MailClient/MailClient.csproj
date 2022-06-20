@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>DarkFactor.MailClient.Lib</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>Thor Richard Hanssen</Authors>
+    <Company>DarkFactor</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackOnBuild>true</PackOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
+    <PackageReference Include="DarkFactor.Common.Lib" Version="1.2.4"/>
+  </ItemGroup>
+
+</Project>

@@ -39,8 +39,9 @@ namespace MailServer.Controllers
 
         [HttpGet]
         [Route("Ping")]
-        public void Ping(string message)
+        public string Ping(string message)
         {
+            return "PONG";
         }
     }
 }
