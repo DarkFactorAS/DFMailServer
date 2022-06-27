@@ -19,15 +19,6 @@ namespace MailClientModule.RestClient
         {
         }
 
-        override protected string GetHostname()
-        {
-            if ( _endpoint != null )
-            {
-                return _endpoint;
-            }
-            return "";
-        }
-
         override protected string GetModule()
         {
             return "MailRestClient";

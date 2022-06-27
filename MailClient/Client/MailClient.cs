@@ -27,5 +27,11 @@ namespace MailClientModule.Client
         {
             return _restClient.SendEmail(mailMessage);
         }
+
+        public static void SetupService( IServiceCollection services )
+        {
+            services.AddTransient<IMailRestClient, MailRestClient>();
+            services.AddTransient<IMainClient, MainClient>();
+        }
     }
 }
