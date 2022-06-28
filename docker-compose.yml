@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+
+  mailserver:
+    networks: 
+      - net_mailserver
+    build:
+      network: host
+      context: ./MailServer
+      dockerfile: ./Dockerfile
+    ports:
+      - "5708:80"
+      - "5709:443"
+
+networks:
+  net_mailserver:
+    name: net_mailserver
