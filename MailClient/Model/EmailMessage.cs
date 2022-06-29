@@ -3,7 +3,7 @@ using System;
 using System.Text;
 using System.Linq;
 
-namespace MailClientModule.Model
+namespace DarkFactor.MailClient
 {
     public class EmailMessage
     {

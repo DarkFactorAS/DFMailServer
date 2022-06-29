@@ -1,4 +1,4 @@
-namespace MailClientModule.Model
+namespace DarkFactor.MailClient
 {
     public class EmailAddress
     {

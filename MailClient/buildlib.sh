@@ -6,6 +6,7 @@
 
 # Build and pack common lib
 dotnet restore MailClient.csproj
+dotnet clean MailClient.csproj
 dotnet build MailClient.csproj
 dotnet pack MailClient.csproj -o bin/debug
 

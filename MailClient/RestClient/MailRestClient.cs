@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using DFCommonLib.HttpApi;
 using DFCommonLib.Logger;
-using MailClientModule.Model;
 
-namespace MailClientModule.RestClient
+namespace DarkFactor.MailClient
 {
     public interface IMailRestClient : IDFRestClient
     {
