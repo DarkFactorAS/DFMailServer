@@ -20,7 +20,7 @@ namespace DarkFactor.MailClient
 
         override protected string GetModule()
         {
-            return "MailRestClient";
+            return "Mail";
         }
 
         public async Task<WebAPIData> SendEmail(EmailMessage message)

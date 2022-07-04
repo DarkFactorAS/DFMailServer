@@ -3,7 +3,7 @@ REM Clear
 rd /q /s .\bin\debug
 
 REM Flush Nuget repo
-REM dotnet nuget locals all -c
+dotnet nuget locals all -c
 
 REM Build and pack common lib
 dotnet restore MailClient.csproj
