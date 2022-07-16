@@ -11,7 +11,8 @@ namespace DarkFactor.MailClient
 
         public EmailAddress(string name, string email)
         {
+            Name = name;
+            Email = email;
         }
-
     }
 }

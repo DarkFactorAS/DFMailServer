@@ -20,12 +20,12 @@ namespace DarkFactor.MailClient
 
         public void AddSender(string name, string email)
         {
-            FromAddresses.Add( new EmailAddress(name, email ));
+            FromAddresses.Add( new EmailAddress(name, email));
         }
 
         public void AddReceiver(string name, string email)
         {
-            ToAddresses.Add( new EmailAddress(name, email ));
+            ToAddresses.Add( new EmailAddress(name, email));
         }
     }
 }

@@ -48,8 +48,8 @@ namespace MailServer.Provider
                         Content = !string.IsNullOrEmpty(message.HtmlBody) ? message.HtmlBody : message.TextBody,
                         Subject = message.Subject
                     };
-                    emailMessage.ToAddresses.AddRange(message.To.Select(x => (MailboxAddress)x).Select(x => new EmailAddress { Address = x.Address, Name = x.Name }));
-                    emailMessage.FromAddresses.AddRange(message.From.Select(x => (MailboxAddress)x).Select(x => new EmailAddress { Address = x.Address, Name = x.Name }));
+                    emailMessage.ToAddresses.AddRange(message.To.Select(x => (MailboxAddress)x).Select(x => new EmailAddress { Email = x.Address, Name = x.Name }));
+                    emailMessage.FromAddresses.AddRange(message.From.Select(x => (MailboxAddress)x).Select(x => new EmailAddress { Email = x.Address, Name = x.Name }));
                     emails.Add(emailMessage);
                 }
 
@@ -60,8 +60,8 @@ namespace MailServer.Provider
         public void Send(EmailMessage emailMessage)
         {
             var message = new MimeMessage();
-            message.To.AddRange(emailMessage.ToAddresses.Select(x => new MailboxAddress(x.Name, x.Address)));
-            message.From.AddRange(emailMessage.FromAddresses.Select(x => new MailboxAddress(x.Name, x.Address)));
+            message.To.AddRange(emailMessage.ToAddresses.Select(x => new MailboxAddress(x.Name, x.Email)));
+            message.From.AddRange(emailMessage.FromAddresses.Select(x => new MailboxAddress(x.Name, x.Email)));
             message.Subject = emailMessage.Subject;
             message.Body = new TextPart(TextFormat.Html)
             {
