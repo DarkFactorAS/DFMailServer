@@ -57,27 +57,35 @@ namespace MailServer.Provider
             }
         }
     
-        public void Send(EmailMessage emailMessage)
+        public WebAPIData Send(EmailMessage emailMessage)
         {
-            var message = new MimeMessage();
-            message.To.AddRange(emailMessage.ToAddresses.Select(x => new MailboxAddress(x.Name, x.Email)));
-            message.From.AddRange(emailMessage.FromAddresses.Select(x => new MailboxAddress(x.Name, x.Email)));
-            message.Subject = emailMessage.Subject;
-            message.Body = new TextPart(TextFormat.Html)
+            try
             {
-                Text = emailMessage.Content
-            };
+                var message = new MimeMessage();
+                message.To.AddRange(emailMessage.ToAddresses.Select(x => new MailboxAddress(x.Name, x.Email)));
+                message.From.AddRange(emailMessage.FromAddresses.Select(x => new MailboxAddress(x.Name, x.Email)));
+                message.Subject = emailMessage.Subject;
+                message.Body = new TextPart(TextFormat.Html)
+                {
+                    Text = emailMessage.Content
+                };
 
-            using (var emailClient = new SmtpClient())
+                using (var emailClient = new SmtpClient())
+                {
+                    //The last parameter here is to use SSL (Which you should!)
+                    emailClient.Connect(_emailConfiguration.SmtpServer, _emailConfiguration.SmtpPort, true);
+
+                    //Remove any OAuth functionality as we won't be using it. 
+                    emailClient.AuthenticationMechanisms.Remove("XOAUTH2");
+                    emailClient.Authenticate(_emailConfiguration.SmtpUsername, _emailConfiguration.SmtpPassword);
+                    emailClient.Send(message);
+                    emailClient.Disconnect(true);
+                    return WebAPIData.ReturnOK();
+                }
+            }
+            catch(Exception ex)
             {
-                //The last parameter here is to use SSL (Which you should!)
-                emailClient.Connect(_emailConfiguration.SmtpServer, _emailConfiguration.SmtpPort, true);
-
-                //Remove any OAuth functionality as we won't be using it. 
-                emailClient.AuthenticationMechanisms.Remove("XOAUTH2");
-                emailClient.Authenticate(_emailConfiguration.SmtpUsername, _emailConfiguration.SmtpPassword);
-                emailClient.Send(message);
-                emailClient.Disconnect(true);
+                return WebAPIData.ReturnFailed(WebAPIData.GENERIC_CODE, ex.message);
             }
         }
     }

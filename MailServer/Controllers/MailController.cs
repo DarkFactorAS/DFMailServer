@@ -32,9 +32,9 @@ namespace MailServer.Controllers
 
         [HttpPut]
         [Route("SendEmail")]
-        public void SendEmail(EmailMessage emailMessage)
+        public WebAPIData SendEmail(EmailMessage emailMessage)
         {
-            _emailProvider.Send(emailMessage);
+            return _emailProvider.Send(emailMessage);
         }
 
         [HttpGet]
