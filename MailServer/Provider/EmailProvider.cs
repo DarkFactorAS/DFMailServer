@@ -2,7 +2,6 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-//using DarkFactorCoreNet.ConfigModel;
 using MailKit.Net.Pop3;
 using MailKit.Net.Smtp;
 using MimeKit;
@@ -11,6 +10,7 @@ using Microsoft.Extensions.Options;
 using MailServer.Model;
 
 using DFCommonLib.Config;
+using DFCommonLib.HttpApi;
 
 // https://dotnetcoretutorials.com/2017/01/11/sending-receiving-email-net-core/
 
@@ -18,7 +18,7 @@ namespace MailServer.Provider
 {
     public interface IEmailProvider
     {
-        void Send(EmailMessage emailMessage);
+        WebAPIData Send(EmailMessage emailMessage);
         List<EmailMessage> ReceiveEmail(int maxCount = 10);
     }
  
@@ -85,7 +85,7 @@ namespace MailServer.Provider
             }
             catch(Exception ex)
             {
-                return WebAPIData.ReturnFailed(WebAPIData.GENERIC_CODE, ex.message);
+                return WebAPIData.ReturnException(ex);
             }
         }
     }
