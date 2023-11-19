@@ -8,7 +8,8 @@ on:
  
 jobs:
   build:
-      uses: ./.github/workflows/build_client.yml
+    runs-on: ubuntu-latest
+    uses: ./.github/workflows/build_client.yml
 
   # Deploy step
   deploy:
