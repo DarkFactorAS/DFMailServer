@@ -15,6 +15,7 @@ jobs:
     name: Deploy
     needs: [DFMailServerCI]
     steps:
+    - name: MailClient - Deploy package
       run: 
         dotnet nuget push "bin/Release/*.nupkg"  --api-key ${{ secrets.NUGET_TOKEN }} --source "github" --skip-duplicate
   
