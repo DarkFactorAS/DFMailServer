@@ -8,13 +8,13 @@ on:
  
 jobs:
   build:
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/build_client.yml
 
   # Deploy step
   deploy:
     name: Deploy
     needs: [DFMailServerCI]
+    runs-on: ubuntu-latest
     steps:
     - name: MailClient - Deploy package
       run: 
