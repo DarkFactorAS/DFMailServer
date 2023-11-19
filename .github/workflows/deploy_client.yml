@@ -13,7 +13,7 @@ jobs:
   # Deploy step
   deploy:
     name: Deploy
-    needs: [DFMailServerCI]
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: MailClient - Deploy package
