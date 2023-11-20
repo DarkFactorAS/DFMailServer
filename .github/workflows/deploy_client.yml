@@ -20,5 +20,5 @@ jobs:
     steps:
     - name: MailClient - Deploy package
       run: 
-        dotnet nuget push "bin/Release/*.nupkg"  --api-key ${{ secrets.NUGET_TOKEN }} --source "github" --skip-duplicate
+        dotnet nuget push "MailClient/bin/Release/*.nupkg"  --api-key ${{ secrets.NUGET_TOKEN }} --source "github" --skip-duplicate
   
