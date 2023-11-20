@@ -5,6 +5,9 @@
 name: DFMailServerCI
 
 inputs:
+  NUGET_USERNAME:
+    description: 'Nuget username'
+    required: true
   NUGET_TOKEN:
     description: 'Nuget pwd'
     required: true
@@ -19,7 +22,7 @@ runs:
 
     # Build client
     - name: Update GitHub nuget repository
-      run: dotnet nuget update source github --store-password-in-clear-text --configfile "MailClient/NuGet.config" --username ${{ vars.NUGET_USERNAME }} --password ${{ inputs.NUGET_TOKEN }}
+      run: dotnet nuget update source github --store-password-in-clear-text --configfile "MailClient/NuGet.config" --username ${{ inputs.NUGET_USERNAME }} --password ${{ inputs.NUGET_TOKEN }}
     - name: MailClient - Restore dependencies
       run: dotnet restore MailClient/MailClient.csproj
     - name: MailClient - Build

@@ -16,4 +16,5 @@ jobs:
       - name: CI Build
         uses: ./.github/template
         with:
+          NUGET_USERNAME: ${{ vars.NUGET_USERNAME }}
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
