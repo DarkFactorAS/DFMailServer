@@ -3,23 +3,13 @@
 
 name: DFMailServerCI
 
-on:
-  
-  push:
+secrets:
+    NUGET_TOKEN:
+    description: 'Nuget pwd'
+    required: true
 
-  pull_request:
-
-  workflow_call:
-    secrets:
-      NUGET_TOKEN:
-        description: 'Nuget pwd'
-        required: true
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+runs:
+    using: "composite"
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
