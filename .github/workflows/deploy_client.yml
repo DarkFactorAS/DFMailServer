@@ -9,12 +9,11 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/build_client.yml
-    varS:
-      NUGET_USERNAME: ${{ secrets.NUGET_USERNAME }}
+    vars:
+      NUGET_USERNAME: ${{ vars.NUGET_USERNAME }}
     secrets:
       NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
   
-
   # Deploy step
   deploy:
     name: Deploy
