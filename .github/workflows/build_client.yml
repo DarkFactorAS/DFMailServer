@@ -3,8 +3,18 @@
 
 name: DFMailServerCI
 
-on: [push,pull_request,workflow_call]
+on:
   
+  push:
+
+  pull_request:
+
+  workflow_call:
+    secrets:
+      NUGET_TOKEN:
+        description: 'Nuget pwd'
+        required: true
+
 jobs:
   build:
 
