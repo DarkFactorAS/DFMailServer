@@ -33,7 +33,7 @@ jobs:
     - name: MailClient - Restore dependencies
       run: dotnet restore MailClient/MailClient.csproj
     - name: MailClient - Build
-      run: dotnet build --no-restore MailClient/MailClient.csproj
+      run: dotnet build --no-restore MailClient/MailClient.csproj --configuration Release
 
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal
