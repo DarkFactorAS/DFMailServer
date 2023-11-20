@@ -20,7 +20,7 @@ jobs:
     steps:
     - name: Update GitHub nuget repository
       run: 
-        dotnet nuget add --source github --store-password-in-clear-text  --username ${{ vars.NUGET_USERNAME }} --password ${{ secrets.NUGET_TOKEN }}
+        dotnet nuget add source --name "github" --store-password-in-clear-text  --username ${{ vars.NUGET_USERNAME }} --password ${{ secrets.NUGET_TOKEN }}
     - name: MailClient - Deploy package
       run: 
         dotnet nuget push "MailClient/bin/Release/*.nupkg"  --api-key ${{ secrets.NUGET_TOKEN }} --source "github" --skip-duplicate
