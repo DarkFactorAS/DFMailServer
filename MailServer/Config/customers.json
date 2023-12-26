@@ -2,16 +2,15 @@
     "CustomerSettings": {
       "Customers": [
         {
-            "Id": "MailServerProd",
-            "SmtpServer": "smtp_server",
-            "SmtpPort": 465,
-            "SmtpUsername": "smtp_username",
-            "SmtpPassword": "smtp_password",
+          "SmtpServer": "smtp.altibox.no",
+          "SmtpPort": 465,
+          "SmtpUsername": "darkfactor@altiboxmail.no",
+          "SmtpPassword": "e67af!MQWuNPryi",
         
-            "PopServer": "pop_server",
-            "PopPort": 995,
-            "PopUsername": "pop_username", 
-            "PopPassword" :  "pop_password"
+          "PopServer": "popserver",
+          "PopPort": 995,
+          "PopUsername": "popusername", 
+          "PopPassword" :  "poppassword"
         }
       ]
     }
