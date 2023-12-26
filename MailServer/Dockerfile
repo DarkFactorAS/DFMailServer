@@ -2,14 +2,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
 WORKDIR /app
 
-# Copy nuget file
-COPY ./NuGet.config ./
-
 # Flush all nuget repos
 #RUN dotnet nuget locals all -c
 
 # Copy files
 COPY ./ ./
+
+# Copy nuget file
+COPY ./NuGet_Docker.config ./NuGet.config
 
 # Restore and build web
 RUN dotnet restore MailServer.csproj
