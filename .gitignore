@@ -34,6 +34,8 @@ Temp/
 Tegra-Android/
 Debug/
 .vs/
+NuGet_Docker.config
+
 
 # =============== #
 # Unity generated #
