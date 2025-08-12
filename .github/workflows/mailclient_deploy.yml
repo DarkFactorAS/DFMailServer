@@ -15,6 +15,7 @@ jobs:
   build:
     uses: ./.github/workflows/mailclient_ci.yml
     secrets:
+      NUGET_USERNAME: ${{ secrets.NUGET_USERNAME }}
       NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
   
   # Deploy step
