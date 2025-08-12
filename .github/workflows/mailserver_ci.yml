@@ -1,0 +1,46 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: MailServer - CI Build
+
+on:
+  
+  push:
+    paths:
+      - 'MailServer/**'
+      - '.github/workflows/mailserver_ci.yml'
+
+  pull_request:
+
+defaults:
+  run:
+    working-directory: ./MailServer
+
+env:
+  PROJECT: MailServer.csproj
+  CONFIGURATION: Release
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    # Build client
+    - name: Update GitHub nuget repository
+      run: dotnet nuget update source "DarkFactorAS" --store-password-in-clear-text --configfile "NuGet.config" --username ${{ secrets.NUGET_USERNAME }} --password ${{ secrets.NUGET_TOKEN }}
+
+    - name: MailServer - Restore dependencies
+      run: dotnet restore ${{ env.PROJECT }}
+
+    - name: MailServer - Build
+      run: dotnet build --no-restore ${{ env.PROJECT }} --configuration ${{ env.CONFIGURATION }}
+
+#    - name: Test
+#      run: dotnet test --no-build --verbosity normal

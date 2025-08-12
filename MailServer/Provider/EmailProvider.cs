@@ -24,21 +24,26 @@ namespace MailServer.Provider
  
     public class EmailProvider : IEmailProvider
     {
-        private readonly EmailConfiguration _emailConfiguration;
+        private readonly EMailServer _emailServer;
 
         public EmailProvider(IConfigurationHelper configuration)
         {
-            _emailConfiguration = configuration.GetFirstCustomer() as EmailConfiguration;
+            var emailConfiguration = configuration.Settings as EmailConfiguration;
+            if (emailConfiguration == null)
+            {
+                throw new ArgumentException("EmailConfiguration is not set in the configuration.");
+            }
+            _emailServer = emailConfiguration.MailServer;
         }
 
         public List<EmailMessage> ReceiveEmail(int maxCount = 10)
         {
             using (var emailClient = new Pop3Client())
             {
-                emailClient.Connect(_emailConfiguration.PopServer, _emailConfiguration.PopPort, true);
+                emailClient.Connect(_emailServer.PopServer, _emailServer.PopPort, true);
                 emailClient.AuthenticationMechanisms.Remove("XOAUTH2");
-                emailClient.Authenticate(_emailConfiguration.PopUsername, _emailConfiguration.PopPassword);
- 
+                emailClient.Authenticate(_emailServer.PopUsername, _emailServer.PopPassword);
+
                 List<EmailMessage> emails = new List<EmailMessage>();
                 for(int i=0; i < emailClient.Count && i < maxCount; i++)
                 {
@@ -73,11 +78,11 @@ namespace MailServer.Provider
                 using (var emailClient = new SmtpClient())
                 {
                     //The last parameter here is to use SSL (Which you should!)
-                    emailClient.Connect(_emailConfiguration.SmtpServer, _emailConfiguration.SmtpPort, true);
+                    emailClient.Connect(_emailServer.SmtpServer, _emailServer.SmtpPort, true);
 
                     //Remove any OAuth functionality as we won't be using it. 
                     emailClient.AuthenticationMechanisms.Remove("XOAUTH2");
-                    emailClient.Authenticate(_emailConfiguration.SmtpUsername, _emailConfiguration.SmtpPassword);
+                    emailClient.Authenticate(_emailServer.SmtpUsername, _emailServer.SmtpPassword);
                     emailClient.Send(message);
                     emailClient.Disconnect(true);
                     return WebAPIData.ReturnOK();
