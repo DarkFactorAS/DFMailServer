@@ -21,4 +21,4 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "MailServer.dll"]
 
-EXPOSE 5000:8080
+EXPOSE 8080
