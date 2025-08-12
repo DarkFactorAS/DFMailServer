@@ -9,7 +9,6 @@ on:
     paths:
       - 'MailClient/**'
       - '.github/workflows/mailclient_ci.yml'
-      - '.github/workflows/mailclient_deploy.yml'
 
   workflow_call:
     secrets:
