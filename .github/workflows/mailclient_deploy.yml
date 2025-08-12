@@ -5,11 +5,11 @@ name: MailClient - Deploy NuGet package
 
 on:
 
+  workflow_dispatch:
+
   push:
     paths:
       - '.github/workflows/mailclient_deploy.yml'
-
-  workflow_dispatch:
     
 jobs:
   build:
