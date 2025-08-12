@@ -1,13 +1,15 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: DFMailServerCI
+name: MailClient - CI Build
 
 on:
   
   push:
-
-  pull_request:
+    paths:
+      - 'MailClient/**'
+      - '.github/workflows/mailclient_ci.yml'
+      - '.github/workflows/mailclient_deploy.yml'
 
   workflow_call:
     secrets:
