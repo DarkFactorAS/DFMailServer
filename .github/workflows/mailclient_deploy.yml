@@ -13,7 +13,7 @@ on:
     
 jobs:
   build:
-    uses: ./.github/workflows/build_client.yml
+    uses: ./.github/workflows/mailclient_ci.yml
     secrets:
       NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
   
