@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <PackageId>DarkFactor.MailClient.Lib</PackageId>
-    <Version>1.0.8</Version>
+    <Version>1.1.0</Version>
     <Authors>Thor Richard Hanssen</Authors>
     <Company>DarkFactor</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
