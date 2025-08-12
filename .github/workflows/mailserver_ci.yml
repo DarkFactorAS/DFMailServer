@@ -1,21 +1,21 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: MailClient - CI Build
+name: MailServer - CI Build
 
 on:
   
   push:
     paths:
-      - 'MailClient/**'
-      - '.github/workflows/mailclient_ci.yml'
+      - 'MailServer/**'
+      - '.github/workflows/mailserver_ci.yml'
 
 defaults:
   run:
-    working-directory: ./MailClient
+    working-directory: ./MailServer
 
 env:
-  PROJECT: MailClient.csproj
+  PROJECT: MailServer.csproj
   CONFIGURATION: Release
 
 jobs:
@@ -32,12 +32,12 @@ jobs:
 
     # Build client
     - name: Update GitHub nuget repository
-      run: dotnet nuget update source "DarkFactorAS" --store-password-in-clear-text --configfile "MailClient/NuGet.config" --username ${{ secrets.NUGET_USERNAME }} --password ${{ secrets.NUGET_TOKEN }}
+      run: dotnet nuget update source "DarkFactorAS" --store-password-in-clear-text --configfile "NuGet.config" --username ${{ secrets.NUGET_USERNAME }} --password ${{ secrets.NUGET_TOKEN }}
 
-    - name: MailClient - Restore dependencies
+    - name: MailServer - Restore dependencies
       run: dotnet restore ${{ env.PROJECT }}
-      
-    - name: MailClient - Build
+
+    - name: MailServer - Build
       run: dotnet build --no-restore ${{ env.PROJECT }} --configuration ${{ env.CONFIGURATION }}
 
 #    - name: Test
