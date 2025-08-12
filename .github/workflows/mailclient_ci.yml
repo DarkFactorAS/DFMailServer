@@ -15,6 +15,9 @@ on:
       NUGET_TOKEN:
         description: 'Nuget pwd'
         required: true
+      NUGET_USERNAME:
+        description: 'Nuget username'
+        required: true
 
 jobs:
   build:
