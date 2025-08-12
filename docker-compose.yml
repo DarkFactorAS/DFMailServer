@@ -9,7 +9,7 @@ services:
       context: ./MailServer
       dockerfile: ./Dockerfile
     ports:
-      - "5700:80"
+      - "5700:8080"
 
 networks:
   net_mailserver:
