@@ -14,7 +14,7 @@ namespace DarkFactor.MailClient
     {
         private const int POST_SENDMAIL = 1;
 
-        public MailRestClient(IDFLogger<DFRestClient> logger ) : base(logger)
+        public MailRestClient() : base()
         {
         }
 
@@ -25,7 +25,7 @@ namespace DarkFactor.MailClient
 
         public async Task<WebAPIData> SendEmail(EmailMessage message)
         {
-            var response = await PutJsonData(POST_SENDMAIL,"SendEmail", message);
+            var response = await PutData(POST_SENDMAIL,"SendEmail", message);
             return response;
         }
     }
