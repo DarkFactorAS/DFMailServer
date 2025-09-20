@@ -5,12 +5,12 @@ using DFCommonLib.Logger;
 
 namespace DarkFactor.MailClient
 {
-    public interface IMailRestClient : IDFRestClient
+    public interface IMailRestClient : IDFHttpRestClient
     {
         Task<WebAPIData> SendEmail(EmailMessage message);
     }
 
-    public class MailRestClient : DFRestClient, IMailRestClient
+    public class MailRestClient : DFHttpRestClient, IMailRestClient
     {
         private const int POST_SENDMAIL = 1;
 
